@@ -3,55 +3,70 @@
   <head>
     <meta charset="UTF-8">
     <title>Mike Drum Résumé</title>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-animate.min.js" type="text/javascript"></script>
     <script src="js/app.js" type="text/javascript"></script>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="style.css" type="text/css">
   </head>
   <body ng-controller="ResumeController">
     <h1>{{resume.firstName}} {{resume.lastName}}</h1>
     <h2 ng-show="resume.title">{{resume.title}}</h2>
-    <p ng-show="resume.abstract">{{resume.abstract}}</p>
-    <div id="contact-info">
-      <p ng-show="resume.email"><a href="mailto:{{resume.email}}">{{resume.email}}</a></p>
-      <p ng-show="resume.phone"><a href="tel:{{resume.phone}}">{{resume.phone}}</a></p>
-      <p ng-show="resume.address">{{resume.address}}</p>
-    </div>
-    <div ng-show="resume.jobs.length > 0">
-      <label><input type="radio" name="group" ng-model="selectedGroup" value="jobs">Jobs ({{resume.jobs.length}})</label>
-      <div ng-show="selectedGroup === 'jobs'">
-        <div ng-repeat="job in resume.jobs">
-          <h3>{{job.name}}</h3>
+    <p ng-show="false" class="">{{resume.abstract}}</p>
+    <div id="groups-container">
+      <div class="group active group-content-padding centered">
+        <p ng-show="resume.email"><a href="mailto:{{resume.email}}">{{resume.email}}</a></p>
+        <p ng-show="resume.phone"><a href="tel:{{resume.phone}}">{{resume.phone}}</a></p>
+        <p ng-show="resume.address">{{resume.address}}</p>
+      </div>
+      <div class="group" ng-class="{active: selectedGroup === 'jobs'}" ng-show="resume.jobs.length > 0">
+        <label><input type="radio" name="group" ng-model="selectedGroup" value="jobs">Jobs ({{resume.jobs.length}})</label>
+        <div class="group-content" ng-show="selectedGroup === 'jobs'">
+          <div class="group-content-padding">
+            <div ng-repeat="job in resume.jobs">
+              <h3>{{job.name}}</h3>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div ng-show="resume.education.length > 0">
-      <label><input type="radio" name="group" ng-model="selectedGroup" value="education">Education ({{resume.education.length}})</label>
-      <div ng-show="selectedGroup === 'education'">
-        <div ng-repeat="school in resume.education">
-          <h3>{{school.name}}</h3>
+      <div class="group" ng-class="{active: selectedGroup === 'education'}" ng-show="resume.education.length > 0">
+        <label><input type="radio" name="group" ng-model="selectedGroup" value="education">Education ({{resume.education.length}})</label>
+        <div class="group-content" ng-show="selectedGroup === 'education'">
+          <div class="group-content-padding">
+            <div ng-repeat="school in resume.education">
+              <h3>{{school.name}}</h3>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div ng-show="resume.projects.length > 0">
-      <label><input type="radio" name="group" ng-model="selectedGroup" value="projects">Projects ({{resume.projects.length}})</label>
-      <div ng-show="selectedGroup === 'projects'">
-        <div ng-repeat="project in resume.projects">
-          <h3>{{project.name}}</h3>
+      <div class="group" ng-class="{active: selectedGroup === 'projects'}" ng-show="resume.projects.length > 0">
+        <label><input type="radio" name="group" ng-model="selectedGroup" value="projects">Projects ({{resume.projects.length}})</label>
+        <div class="group-content" ng-show="selectedGroup === 'projects'">
+          <div class="group-content-padding">
+            <div ng-repeat="project in resume.projects">
+              <h3>{{project.name}}</h3>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div ng-show="resume.certifications.length > 0">
-      <label><input type="radio" name="group" ng-model="selectedGroup" value="certifications">Certifications ({{resume.certifications.length}})</label>
-      <div ng-show="selectedGroup === 'certifications'">
-        <div ng-repeat="certification in resume.certifications">
-          <h3>{{certification.name}}</h3>
+      <div class="group" ng-class="{active: selectedGroup === 'certifications'}" ng-show="resume.certifications.length > 0">
+        <label><input type="radio" name="group" ng-model="selectedGroup" value="certifications">Certifications ({{resume.certifications.length}})</label>
+        <div class="group-content" ng-show="selectedGroup === 'certifications'">
+          <div class="group-content-padding">
+            <div ng-repeat="certification in resume.certifications">
+              <h3>{{certification.name}}</h3>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div ng-show="resume.skills.length > 0">
-      <label><input type="radio" name="group" ng-model="selectedGroup" value="skills">Skills ({{resume.skills.length}})</label>
-      <div ng-show="selectedGroup === 'skills'">
-        <div ng-repeat="skill in resume.skills">
-          <h3>{{skill.name}}</h3>
+      <div class="group" ng-class="{active: selectedGroup === 'skills'}" ng-show="resume.skills.length > 0">
+        <label><input type="radio" name="group" ng-model="selectedGroup" value="skills">Skills ({{resume.skills.length}})</label>
+        <div class="group-content" ng-show="selectedGroup === 'skills'">
+          <div class="group-content-padding">
+            <div ng-repeat="skill in resume.skills">
+              <h3>{{skill.name}}</h3>
+            </div>
+          </div>
         </div>
       </div>
     </div>
